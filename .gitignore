@@ -72,3 +72,7 @@ logs/
 # Misc sensitive
 *.secret
 *.secrets
+
+# Claude / AI assistant files
+CLAUDE.md
+.claude/
