@@ -21,7 +21,7 @@ export function ContactPanel() {
 
       {/* Primary — Calendly */}
       <motion.div variants={I}>
-        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer"
+        <a href="https://calendar.app.google/UeZeWyAf4EiXXyyr5" target="_blank" rel="noopener noreferrer"
           className="group w-full flex items-center justify-between p-4 rounded-xl transition-all duration-200"
           style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', fontFamily: 'inherit' }}
           onMouseEnter={(e) => {
@@ -49,8 +49,8 @@ export function ContactPanel() {
       {/* Secondary links */}
       <motion.div variants={I} className="space-y-2">
         {[
-          { icon: Mail,     label: 'hi@mehranfirdous.com',   sub: 'email',    href: 'mailto:hi@mehranfirdous.com' },
-          { icon: Linkedin, label: '/in/mehranfirdous',       sub: 'linkedin', href: 'https://linkedin.com/in/mehranfirdous' },
+          { icon: Mail,     label: 'firdousmehran@gmail.com',   sub: 'email',    href: 'mailto:firdousmehran@gmail.com' },
+          { icon: Linkedin, label: '/in/reachmehran',       sub: 'linkedin', href: 'https://www.linkedin.com/in/reachmehran/' },
         ].map(({ icon: Icon, label, sub, href }) => (
           <a key={sub} href={href} target="_blank" rel="noopener noreferrer"
             className="group w-full flex items-center justify-between p-3.5 rounded-xl transition-all duration-150"

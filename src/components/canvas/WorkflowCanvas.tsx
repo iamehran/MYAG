@@ -61,7 +61,7 @@ function CanvasInner() {
   const handleInit = useCallback(() => {
     if (!initialized.current) {
       initialized.current = true;
-      fitView({ duration: 600, padding: 0.18 });
+      fitView({ duration: 600, padding: 0.22 });
     }
   }, [fitView]);
 
@@ -75,18 +75,20 @@ function CanvasInner() {
         onNodesChange={onNodesChange} onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes} edgeTypes={edgeTypes}
         onNodeClick={onNodeClick} onInit={handleInit}
-        fitView fitViewOptions={{ padding: 0.18 }}
+        fitView fitViewOptions={{ padding: 0.22 }}
         minZoom={0.2} maxZoom={2}
+        panOnScroll={false}
         proOptions={{ hideAttribution: true }}
         className="bg-transparent"
       >
         <Background variant={BackgroundVariant.Dots} gap={32} size={1} color="rgba(255,255,255,0.0)" />
-        <Controls position="bottom-left" />
+        {/* Controls hidden on mobile via CSS */}
+        <Controls position="bottom-left" showInteractive={false} />
       </ReactFlow>
 
-      {/* Back */}
+      {/* Back — larger touch target on mobile */}
       <motion.a href="/" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
-        className="absolute top-6 left-6 z-20 flex items-center gap-1.5 text-[11px] transition-colors duration-150"
+        className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-1.5 text-[11px] transition-colors duration-150 min-h-[44px] px-2"
         style={{ color: 'rgba(255,255,255,0.2)', fontFamily: 'inherit', letterSpacing: '0.04em' }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.6)'; }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.2)'; }}>
@@ -96,11 +98,11 @@ function CanvasInner() {
         back
       </motion.a>
 
-      {/* Bottom hint */}
-      <motion.p className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-[9px] tracking-[0.3em] uppercase"
+      {/* Bottom hint — safe-area aware */}
+      <motion.p className="absolute bottom-6 safe-bottom left-1/2 -translate-x-1/2 z-10 text-[9px] tracking-[0.3em] uppercase whitespace-nowrap"
         style={{ color: 'rgba(255,255,255,0.15)', fontFamily: 'inherit' }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1.2 }}>
-        click a node to explore
+        tap or click a node to explore
       </motion.p>
 
       <AnimatePresence>

@@ -16,7 +16,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden flex items-center justify-center"
+    <div className="relative w-screen h-screen-safe overflow-hidden flex items-center justify-center"
       style={{ background: '#0C0C0C' }}>
 
       {/* Ethereal shadow background */}
@@ -37,7 +37,7 @@ export default function LandingPage() {
 
       {/* Content */}
       <motion.div
-        className="relative z-20 flex flex-col items-center gap-8 px-6 text-center max-w-xl"
+        className="relative z-20 flex flex-col items-center gap-5 sm:gap-8 px-6 text-center max-w-xl w-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
@@ -53,18 +53,18 @@ export default function LandingPage() {
           portfolio · mehran firdous
         </motion.p>
 
-        {/* Main headline — no bold, all lowercase */}
+        {/* Main headline */}
         <motion.div
           className="space-y-1"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.8 }}
         >
-          <h1 className="text-[clamp(1.5rem,4vw,2.4rem)] leading-[1.15] tracking-[-0.01em]"
-            style={{ fontWeight: 300, color: 'rgba(255,255,255,0.85)', letterSpacing: '-0.01em' }}>
+          <h1 className="text-[clamp(1.6rem,6vw,2.4rem)] leading-[1.15] tracking-[-0.01em]"
+            style={{ fontWeight: 300, color: 'rgba(255,255,255,0.85)' }}>
             there&apos;s no problem
           </h1>
-          <h1 className="text-[clamp(1.5rem,4vw,2.4rem)] leading-[1.15]"
+          <h1 className="text-[clamp(1.6rem,6vw,2.4rem)] leading-[1.15]"
             style={{ fontWeight: 300, color: 'rgba(255,255,255,0.45)' }}>
             without a solution.
           </h1>
@@ -81,10 +81,10 @@ export default function LandingPage() {
           let&apos;s find yours.
         </motion.p>
 
-        {/* Button */}
+        {/* Button — min-h-[44px] for mobile touch target */}
         <motion.button
           onClick={handleRun}
-          className="group flex items-center gap-3 px-6 py-3 rounded-lg cursor-pointer transition-all duration-200"
+          className="group flex items-center gap-3 px-6 py-3 min-h-[44px] rounded-lg cursor-pointer transition-all duration-200"
           style={{
             background: 'rgba(255,255,255,0.04)',
             border: '1px solid rgba(255,255,255,0.12)',
@@ -104,7 +104,6 @@ export default function LandingPage() {
           }}
           whileTap={{ scale: 0.97 }}
         >
-          {/* Diamond */}
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" className="opacity-60 group-hover:opacity-100 transition-opacity">
             <rect x="5.5" y="0.5" width="7" height="7" rx="1" transform="rotate(45 5.5 0.5)"
               stroke="currentColor" strokeWidth="1.2" />

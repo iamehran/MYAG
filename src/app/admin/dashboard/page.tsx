@@ -92,7 +92,7 @@ function ProjectForm({ initial, onSave, onCancel }: {
   return (
     <div className="rounded-xl p-5 space-y-4"
       style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Field label="Title" value={form.title} onChange={(e) => s('title', e.target.value)} placeholder="AI Support Agent" />
         <Field label="Slug" value={form.slug} onChange={(e) => s('slug', e.target.value)} placeholder="ai-support-agent" />
       </div>
@@ -103,8 +103,8 @@ function ProjectForm({ initial, onSave, onCancel }: {
       <Field label="Stack (comma-separated)" value={form.stack.join(', ')}
         onChange={(e) => s('stack', e.target.value.split(',').map((x) => x.trim()).filter(Boolean))}
         placeholder="n8n, GPT-4, Slack" />
-      <div className="flex items-center gap-3">
-        <label className="flex items-center gap-2 cursor-pointer text-[13px]" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'inherit', fontWeight: 300 }}>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        <label className="flex items-center gap-2 cursor-pointer text-[13px] shrink-0" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'inherit', fontWeight: 300 }}>
           <input type="checkbox" checked={form.featured} onChange={(e) => s('featured', e.target.checked)} />
           featured
         </label>
@@ -136,7 +136,7 @@ function TemplateForm({ initial, onSave, onCancel }: {
   return (
     <div className="rounded-xl p-5 space-y-4"
       style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Field label="Title" value={form.title} onChange={(e) => s('title', e.target.value)} />
         <Field label="Slug" value={form.slug} onChange={(e) => s('slug', e.target.value)} />
       </div>
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 py-8 space-y-6">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
         {/* Tabs */}
         <div className="flex items-center gap-1 p-1 rounded-xl w-fit"
           style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>

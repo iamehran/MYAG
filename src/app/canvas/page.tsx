@@ -24,7 +24,7 @@ function CanvasLoader() {
 
 export default function CanvasPage() {
   return (
-    <motion.div className="w-screen h-screen overflow-hidden" style={{ background: '#0C0C0C' }}
+    <motion.div className="w-screen h-screen-safe overflow-hidden" style={{ background: '#0C0C0C' }}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}>
       <WorkflowCanvas />

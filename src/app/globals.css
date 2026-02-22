@@ -125,6 +125,24 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
 
+/* ── Safe-area (notched iOS devices) ─────────────────────────────────── */
+.safe-bottom { padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); }
+.safe-top    { padding-top: max(1.5rem, env(safe-area-inset-top)); }
+
+/* ── Full-screen height fix (iOS Safari dynamic chrome) ──────────────── */
+.h-screen-safe {
+  height: 100vh;
+  height: 100dvh; /* dynamic viewport height — avoids iOS URL-bar cutoff */
+}
+
+/* ── Mobile: hide React Flow controls on small screens ───────────────── */
+@media (max-width: 640px) {
+  .react-flow__controls { display: none !important; }
+}
+
+/* ── Touch: prevent double-tap zoom on interactive nodes ─────────────── */
+.react-flow__node { touch-action: none; }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .react-flow__node { transition: none !important; }

@@ -28,7 +28,7 @@ export default async function ProjectPage({ params }: PageProps) {
   if (!project) notFound();
 
   return (
-    <div className="min-h-screen px-6 py-12 max-w-2xl mx-auto"
+    <div className="min-h-screen px-4 sm:px-6 py-8 sm:py-12 max-w-2xl mx-auto"
       style={{ background: '#0C0C0C', color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-jb), monospace' }}>
       <Link
         href="/canvas"
@@ -68,7 +68,7 @@ export default async function ProjectPage({ params }: PageProps) {
         {project.metrics.length > 0 && (
           <div>
             <p className="text-[9px] uppercase tracking-[0.25em] mb-3" style={{ color: 'rgba(255,255,255,0.2)', fontWeight: 400 }}>results</p>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {project.metrics.map((m) => (
                 <div key={m.label} className="rounded-xl p-3 text-center"
                   style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
