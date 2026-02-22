@@ -1,0 +1,43 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { getAdminSession } from '@/lib/auth';
+import { getTemplates, saveTemplates } from '@/lib/dataStore';
+import { Template } from '@/lib/mockData';
+
+async function guard() {
+  const ok = await getAdminSession();
+  if (!ok) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  return null;
+}
+
+export async function GET() {
+  const err = await guard(); if (err) return err;
+  return NextResponse.json(getTemplates());
+}
+
+export async function POST(req: NextRequest) {
+  const err = await guard(); if (err) return err;
+  const body: Template = await req.json();
+  const templates = getTemplates();
+  const n = { ...body, id: Date.now().toString(), slug: body.slug || slugify(body.title) };
+  templates.push(n);
+  saveTemplates(templates);
+  return NextResponse.json(n, { status: 201 });
+}
+
+export async function PUT(req: NextRequest) {
+  const err = await guard(); if (err) return err;
+  const body: Template = await req.json();
+  saveTemplates(getTemplates().map((t) => (t.id === body.id ? body : t)));
+  return NextResponse.json(body);
+}
+
+export async function DELETE(req: NextRequest) {
+  const err = await guard(); if (err) return err;
+  const { id } = await req.json();
+  saveTemplates(getTemplates().filter((t) => t.id !== id));
+  return NextResponse.json({ ok: true });
+}
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}

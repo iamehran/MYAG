@@ -1,26 +1,132 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jb), monospace;
+  --font-mono: var(--font-jb), monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-lg: var(--radius);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+
+  /* Monochromatic white-grey-black */
+  --background: #0C0C0C;
+  --foreground: #E5E5E5;
+  --card: rgba(16, 16, 16, 0.97);
+  --card-foreground: #E5E5E5;
+  --popover: rgba(14, 14, 14, 0.98);
+  --popover-foreground: #E5E5E5;
+  --primary: #E5E5E5;
+  --primary-foreground: #0C0C0C;
+  --secondary: rgba(255,255,255,0.05);
+  --secondary-foreground: #E5E5E5;
+  --muted: rgba(255,255,255,0.04);
+  --muted-foreground: #666666;
+  --accent: rgba(255,255,255,0.06);
+  --accent-foreground: #E5E5E5;
+  --destructive: #888888;
+  --border: rgba(255,255,255,0.08);
+  --input: rgba(255,255,255,0.06);
+  --ring: rgba(255,255,255,0.25);
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { color-scheme: dark; }
+  body {
+    background: #0C0C0C;
+    color: #E5E5E5;
+    font-family: var(--font-jb), 'JetBrains Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga" 1, "calt" 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Dot-grid canvas pattern (reusable) ─────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.dot-grid-faint {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── React Flow overrides ─────────────────────────────────────────────── */
+.react-flow, .react-flow__renderer, .react-flow__pane,
+.react-flow__viewport, .react-flow__container, .react-flow__background {
+  background: transparent !important;
+}
+
+/* Smooth layout-switch animation */
+.react-flow__node {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.react-flow__edge-path {
+  stroke: rgba(255,255,255,0.1) !important;
+  stroke-width: 1px !important;
+}
+
+.react-flow__controls {
+  background: rgba(16,16,16,0.9) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(12px) !important;
+  overflow: hidden;
+}
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255,255,255,0.3) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+  transition: all 0.15s !important;
+}
+.react-flow__controls-button:hover {
+  background: rgba(255,255,255,0.05) !important;
+  color: rgba(255,255,255,0.8) !important;
+}
+.react-flow__controls-button:last-child { border-bottom: none !important; }
+.react-flow__controls-button svg {
+  fill: rgba(255,255,255,0.45) !important;
+}
+.react-flow__controls-button:hover svg {
+  fill: rgba(255,255,255,0.85) !important;
+}
+
+/* Edge flow animation — white */
+@keyframes edgeFlow {
+  from { stroke-dashoffset: 20; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Loader */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .react-flow__node { transition: none !important; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
