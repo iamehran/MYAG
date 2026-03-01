@@ -78,7 +78,7 @@ export default function LandingPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
         >
-          let&apos;s find yours.
+          and I am here to Figure it Out.
         </motion.p>
 
         {/* Button — min-h-[44px] for mobile touch target */}
